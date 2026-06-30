@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+dist
+.git
+.gitignore
+README.md
+.angular
+.vscode
+.editorconfig
+src/**/*.spec.ts
+tsconfig.spec.json
+karma.conf.js
+.env
+.env.local
+coverage

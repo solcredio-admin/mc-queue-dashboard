@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://mc-api.solcredio.net",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": "/api"
+    },
+    "logLevel": "debug"
+  }
+}
