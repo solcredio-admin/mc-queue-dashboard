@@ -12,6 +12,8 @@ import { QueueService } from '../services/queue.service';
 export class DashboardComponent implements OnInit {
 
   queue: any;
+  error = '';
+  loading = false;
 
   constructor(private queueService: QueueService) {}
 
@@ -20,8 +22,18 @@ export class DashboardComponent implements OnInit {
   }
 
   loadQueue() {
-    this.queueService.getQueue().subscribe(res => {
-      this.queue = res;
+    this.loading = true;
+    this.queueService.getQueue().subscribe({
+      next: res => {
+        this.queue = res;
+        this.error = '';
+        this.loading = false;
+      },
+      error: err => {
+        console.error('Queue load failed', err);
+        this.error = 'Unable to load queue data. Check the API connection.';
+        this.loading = false;
+      }
     });
   }
 

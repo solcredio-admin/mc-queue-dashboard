@@ -1,31 +1,90 @@
-<div class="dashboard">
+<div class="page">
 
-  <h1>Queue Dashboard</h1>
+  <header class="topbar">
+    <div>
+      <h1>Queue Control Dashboard</h1>
+      <p>Admin Panel – Clinic Queue System</p>
+    </div>
+  </header>
 
-  <div *ngIf="queue">
+  <div *ngIf="loading" class="status-banner loading-banner">
+    Loading queue data...
+  </div>
+
+  <div *ngIf="error" class="status-banner error-banner">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!queue && !loading && !error" class="status-banner neutral-banner">
+    No queue data available.
+  </div>
+
+  <div class="grid" *ngIf="queue">
 
     <!-- ROOM 1 -->
     <div class="card">
-      <h2>Room 1</h2>
-      <p>Current: {{ queue.room1.number }}</p>
+      <div class="card-header">
+        <div>
+          <h2>{{ queue?.room1?.room ?? 'Room 1' }}</h2>
+          <p class="meta">{{ queue?.room1?.doctor ?? 'Dr. Kenneth Miranda' }}</p>
+        </div>
+      </div>
 
-      <input #r1 type="number" placeholder="Set number">
+      <div class="number-display">
+        {{ queue?.room1?.number ?? '-' }}
+      </div>
 
-      <button (click)="setNumber('room1', r1.value)">Set</button>
-      <button (click)="increment('room1', queue.room1.number)">+</button>
-      <button (click)="decrement('room1', queue.room1.number)">-</button>
+      <div class="controls">
+        <button class="btn minus"
+                (click)="decrement('room1', queue?.room1?.number)">
+          -1
+        </button>
+
+        <button class="btn plus"
+                (click)="increment('room1', queue?.room1?.number)">
+          +1
+        </button>
+      </div>
+
+      <div class="manual">
+        <input #r1 type="number" placeholder="Set number">
+        <button class="btn set-btn" (click)="setNumber('room1', r1.value)">
+          Set
+        </button>
+      </div>
     </div>
 
     <!-- ROOM 2 -->
     <div class="card">
-      <h2>Room 2</h2>
-      <p>Current: {{ queue.room2.number }}</p>
+      <div class="card-header">
+        <div>
+          <h2>{{ queue?.room2?.room ?? 'Room 2' }}</h2>
+          <p class="meta">{{ queue?.room2?.doctor ?? 'Dr. Kath Miranda' }}</p>
+        </div>
+      </div>
 
-      <input #r2 type="number" placeholder="Set number">
+      <div class="number-display">
+        {{ queue?.room2?.number ?? '-' }}
+      </div>
 
-      <button (click)="setNumber('room2', r2.value)">Set</button>
-      <button (click)="increment('room2', queue.room2.number)">+</button>
-      <button (click)="decrement('room2', queue.room2.number)">-</button>
+      <div class="controls">
+        <button class="btn minus"
+                (click)="decrement('room2', queue?.room2?.number)">
+          -1
+        </button>
+
+        <button class="btn plus"
+                (click)="increment('room2', queue?.room2?.number)">
+          +1
+        </button>
+      </div>
+
+      <div class="manual">
+        <input #r2 type="number" placeholder="Set number">
+        <button class="btn set-btn" (click)="setNumber('room2', r2.value)">
+          Set
+        </button>
+      </div>
     </div>
 
   </div>
