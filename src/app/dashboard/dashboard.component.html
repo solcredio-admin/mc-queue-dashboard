@@ -1,0 +1,33 @@
+<div class="dashboard">
+
+  <h1>Queue Dashboard</h1>
+
+  <div *ngIf="queue">
+
+    <!-- ROOM 1 -->
+    <div class="card">
+      <h2>Room 1</h2>
+      <p>Current: {{ queue.room1.number }}</p>
+
+      <input #r1 type="number" placeholder="Set number">
+
+      <button (click)="setNumber('room1', r1.value)">Set</button>
+      <button (click)="increment('room1', queue.room1.number)">+</button>
+      <button (click)="decrement('room1', queue.room1.number)">-</button>
+    </div>
+
+    <!-- ROOM 2 -->
+    <div class="card">
+      <h2>Room 2</h2>
+      <p>Current: {{ queue.room2.number }}</p>
+
+      <input #r2 type="number" placeholder="Set number">
+
+      <button (click)="setNumber('room2', r2.value)">Set</button>
+      <button (click)="increment('room2', queue.room2.number)">+</button>
+      <button (click)="decrement('room2', queue.room2.number)">-</button>
+    </div>
+
+  </div>
+
+</div>
